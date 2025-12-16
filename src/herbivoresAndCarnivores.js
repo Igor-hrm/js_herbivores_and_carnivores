@@ -6,7 +6,6 @@ class Animal {
   constructor(name, health = 100) {
     this.name = name;
     this.health = health;
-
     Animal.alive.push(this);
   }
 }
@@ -34,11 +33,7 @@ class Carnivore extends Animal {
       animalBitten.health -= damage;
 
       if (animalBitten.health <= 0) {
-        const index = Animal.alive.findIndex((a) => a === animalBitten);
-
-        if (index !== -1) {
-          Animal.alive.splice(index, 1);
-        }
+        Animal.alive = Animal.alive.filter((a) => a !== animalBitten);
       }
     }
   }
